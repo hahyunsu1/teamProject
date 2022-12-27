@@ -3,15 +3,17 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<!-- typeAlias 타입 별칭 설정================ -->
-	<!-- <typeAliases> 작성 참고
-		<typeAlias type="com.memo.model.MemoVO" alias="Memo"/>
-		
+	<!-- typeAlias 타입 별칭 설정================ -->	
+    <typeAliases> 
+		<typeAlias type="com.family.model.AnimalBoardVO" alias="Animal"/>
+		<typeAlias type="com.family.model.PagingVO" alias="Paging"/>
+		<typeAlias type="com.chat.model.chatVO" alias="Chat"/>
 		 
-	</typeAliases> -->
-	<!-- mapper 정의 -->
-	<!-- <mappers> 작성참고
-		<mapper resource="config/mybatis/mapper/MemoMapper.xml"/>
+	</typeAliases>
+	<!-- mapper 정의 -->		
+	<mappers>
+		<mapper resource="config/mybatis/mapper/AnimalMapper.xml"/>
+		<mapper resource="config/mybatis/mapper/ChatMapper.xml"/>
 		
-	</mappers> -->
+	</mappers>
 </configuration>

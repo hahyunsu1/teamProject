@@ -232,6 +232,18 @@
 			<version>2.4</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>5.2.5.RELEASE</version>
+		</dependency>
+		<dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-messaging</artifactId>
+        <version>${org.springframework-version}</version>
+    	</dependency>
+
 		     
 	</dependencies>
     <build>
