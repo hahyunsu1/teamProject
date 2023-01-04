@@ -11,7 +11,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private MemberMapper membermapper;
-
+	//회원가입
 	@Override
 	public int MemberJoin(MemberVO member){
 		return this.membermapper.MemberJoin(member);
@@ -26,5 +26,18 @@ public class MemberServiceImpl implements MemberService {
 	public int nickCheck(String nick) {
 		return this.membermapper.nickCheck(nick);
 	}
+	
+	/* 로그인 */
+    @Override
+    public MemberVO memberLogin(MemberVO member) throws Exception {
+        return this.membermapper.memberLogin(member);
+    }
+    
+    @Override
+    public int updateMember(MemberVO member) throws Exception{
+    	return this.membermapper.updateMember(member);
+    }
+ 
+
 
 }

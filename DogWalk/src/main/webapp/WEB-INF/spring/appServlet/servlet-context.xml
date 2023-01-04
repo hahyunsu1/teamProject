@@ -25,7 +25,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.family.web,com.family" />
+	<context:component-scan base-package="com.family.web,com.family,com.member" />
+	<context:component-scan base-package="com.common"/>
 	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding" value="UTF-8"/>

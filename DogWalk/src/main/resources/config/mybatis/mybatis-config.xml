@@ -4,14 +4,14 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<!-- typeAlias 타입 별칭 설정================ -->
-	<!-- <typeAliases> 작성 참고
-		<typeAlias type="com.memo.model.MemoVO" alias="Memo"/>
+	<typeAliases>
+		<typeAlias type="com.member.model.MemberVO" alias="Member"/>
 		
 		 
-	</typeAliases> -->
+	</typeAliases>
 	<!-- mapper 정의 -->
-	<!-- <mappers> 작성참고
-		<mapper resource="config/mybatis/mapper/MemoMapper.xml"/>
+	<mappers>
+		<mapper resource="config/mybatis/mapper/MemberMapper.xml"/>
 		
-	</mappers> -->
+	</mappers>
 </configuration>

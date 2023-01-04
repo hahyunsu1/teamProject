@@ -8,4 +8,8 @@ public interface MemberMapper {
 	 int idCheck(String userid);
 	 
 	 int nickCheck(String nick);
+	 
+	 MemberVO memberLogin(MemberVO member);//로그인
+	 
+	 int updateMember(MemberVO member);
 }
