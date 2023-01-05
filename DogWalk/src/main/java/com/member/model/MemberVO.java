@@ -16,7 +16,7 @@ public class MemberVO {
 	private String post;
 	private String addr1,addr2;
 	private java.sql.Date indate;
-	private int status; 
+	private int status; //회원상태(0:일반회원, 1:비회원, -1:비매너회원, -2:정지회원 99:운영진)
 	private String nick;
 	private String mail;
 	private String rrn1,rrn2;

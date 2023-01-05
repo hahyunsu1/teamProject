@@ -4,10 +4,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<c:import url="/top"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 <div class="container" style="text-align:center">
-		
+	 <c:set var="myctx" value="${pageContext.request.contextPath}"/>
 		<div class="row">
         <div class="col-md-12">
            <h1 class="text-center m-4" style="margin:1em">::Animal List:::</h1>
@@ -19,7 +19,7 @@
                     <th data-sort="string">제목</th>
                     <th>이미지</th>
                     <th data-sort="string">사례비</th>
-                    <th>수정|삭제</th>
+                    <th><a href="${myctx}/comanimal/comanimalwrite">글쓰기</a>|삭제</th>
                  </tr>
               </thead>
               <tbody>
@@ -78,5 +78,3 @@
       </div>
 		
 	</div>
-
-<c:import url="/foot"/>

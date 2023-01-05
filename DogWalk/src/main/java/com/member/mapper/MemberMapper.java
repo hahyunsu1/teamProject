@@ -9,7 +9,7 @@ public interface MemberMapper {
 	 
 	 int nickCheck(String nick);
 	 
-	 MemberVO memberLogin(MemberVO member);
+	 MemberVO memberLogin(MemberVO member);//로그인
 	 
-	 MemberVO selectById(String userid);
+	 int updateMember(MemberVO member);
 }

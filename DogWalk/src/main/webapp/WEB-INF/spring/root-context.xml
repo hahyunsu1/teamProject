@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		<!-- navermail설정 -->
+	 <!-- navermail설정 -->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
      <property name="host" value="smtp.naver.com"/> <!-- 메이서버 호스트 -->
      <property name="port" value="465"/> <!-- 메이서버 포트번호 -->
@@ -23,4 +23,8 @@
       </props>
      </property>
     </bean>
+		
+
+		
+		
 </beans>
