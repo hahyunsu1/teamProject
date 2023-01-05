@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
@@ -78,6 +79,19 @@
                   href="../list">목록</a>| <a href="#" onclick="go(1)">편집</a>| <a
                   href="#" onclick="go(2)">삭제</a>|</td>
             </tr>
+       	     <div class="buy_chat">
+				<form:form id="chatSubmit_form" action="/chatMessage" method="GET" modelAttribute="chatRoom">
+					<a href="javascript:{}" onclick="chatSubmit()">
+						<form:input type="hidden" path="sellerName" value="${nick_fk}"/>
+						<form:input type="hidden" path="cnum" value="${amb.cnum}"/>
+						<form:input type="hidden" path="sellerId" value="${amb.mail_fk}"/>
+						<form:input type="hidden" path="pr_title" value="${amb.title}"/>
+						<button id="btn_chat">
+							채팅으로 거래하기
+						</button>
+					</a>
+				</form:form>
+			</div>
          </table>
 	</c:if>
 	<!-- 파일 다운로드를 위한 form------------------------------------------ -->

@@ -9,5 +9,10 @@ public interface MemberService {
 	int idCheck(String userid);
 	
 	int nickCheck(String nick);
+	
+	public MemberVO memberLogin(MemberVO member) throws Exception;
+	
+	MemberVO selectById(String userid);
+
 
 }

@@ -7,13 +7,18 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     <typeAliases> 
 		<typeAlias type="com.family.model.AnimalBoardVO" alias="Animal"/>
 		<typeAlias type="com.family.model.PagingVO" alias="Paging"/>
-		<typeAlias type="com.chat.model.chatVO" alias="Chat"/>
+		<typeAlias type="com.member.model.MemberVO" alias="Member"/>
+		<typeAlias type="com.message.model.Message" alias="Message"/>
+		
 		 
 	</typeAliases>
 	<!-- mapper 정의 -->		
 	<mappers>
 		<mapper resource="config/mybatis/mapper/AnimalMapper.xml"/>
-		<mapper resource="config/mybatis/mapper/ChatMapper.xml"/>
+		<mapper resource="config/mybatis/mapper/MemberMapper.xml"/>
+		<mapper resource="config/mybatis/mapper/MessageMapper.xml"/>
 		
 	</mappers>
+	
+	
 </configuration>

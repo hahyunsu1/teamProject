@@ -6,7 +6,7 @@
 <c:import url="/top"/>
 
 <div class="container mt-3" style="height: 700px;overFlow:auto;">
- 
+ <c:import url="/weather"/>
 </div>
 
 <c:import url="/animal/foot"/>
