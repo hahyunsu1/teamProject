@@ -27,4 +27,16 @@ public class MemberServiceImpl implements MemberService {
 		return this.membermapper.nickCheck(nick);
 	}
 
+	@Override
+	public MemberVO memberLogin(MemberVO member) {
+		
+		return this.membermapper.memberLogin(member);
+	}
+
+	@Override
+	public MemberVO selectById(String userid) {
+		
+		return this.membermapper.selectById(userid);
+	}
+
 }

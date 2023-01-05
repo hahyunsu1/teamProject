@@ -27,7 +27,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.family.web,com.family,com.common,com.chat" />
+	<context:component-scan base-package="com.family.web,com.family,com.common,com.message,com.member" />
 	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding" value="UTF-8"/>
@@ -36,9 +36,26 @@
 	</beans:bean>
 	<beans:bean id="upDir" class="java.lang.String">
 		<beans:constructor-arg value="c:/myjava/Upload"/>
+		
 	</beans:bean>
 	
+	<!-- 웹 소켓핸들러 -->
+        <websocket:handlers>
+               <websocket:mapping handler="alarmHandler" path="/alarm"/>
+               <!-- WebSocket Handshake : 웹소켓 핸들러 클래스(echoHandler)가 호출되기전에 HttpSession에 접속하여  -->
+               <!-- '이용자 아이디를 추출하는 기능' 등을 인터셉터가 수행하도록 설정 -->
+               <websocket:handshake-interceptors>
+                       <beans:bean class="com.message.interceptor.AlarmHandShakeInterceptor"/>
+               </websocket:handshake-interceptors>
+               <!-- <websocket:sockjs /> -->
+        </websocket:handlers>
+        <beans:bean id="alarmHandler" class="com.message.websocket.WebSocketAlarmHandler" />
 	
+	<!-- MessageSource  -->
+	<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <beans:property name="basenames" value="/WEB-INF/messages/messages"/>
+        <beans:property name="defaultEncoding" value="UTF-8"/>
+    </beans:bean>
 	
 	
 	

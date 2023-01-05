@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd">
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<!--[1] context,mybatis-spring 네임스페이스 추가함 -->
 	<context:property-placeholder location="classpath:config/props/database.properties"/>
 	
@@ -53,5 +55,25 @@
 			여기에 설정된 패키지의 인터페이스들은 scan해서 해당 인터페이스를 구현한
 			객체(Proxy)를 스프링이 대신 만들어준다(생성해줌)
 	-->
-	<mybatis-spring:scan base-package="com.family.mapper"/>	
+	<!-- navermail설정 -->
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.naver.com" /> <!-- 메이서버 호스트 -->
+		<property name="port" value="465" /> <!-- 메이서버 포트번호 -->
+		<property name="username" value="tmxhak12" /> <!-- 자신의 이메일 아이디 -->
+		<property name="password" value="eunkyeong12~!" /> <!-- 자신의 비밀번호 -->
+		<!-- 보안연결 SSL과 관련된 설정 -->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtps.checkserveridentity">true</prop>
+				<prop key="mail.smtps.ssl.trust">*</prop>
+				<prop key="mail.debug">true</prop>
+				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+			</props>
+		</property>
+	</bean>
+    
+	<mybatis-spring:scan base-package="com.family.mapper,com.member.mapper,com.message.mapper,com.family.web.animalCareBoard.mapper,com.family.web.secondHandBoard.mapper"/>	
 </beans>

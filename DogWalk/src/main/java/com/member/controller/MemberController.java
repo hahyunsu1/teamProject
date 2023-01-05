@@ -3,15 +3,23 @@ package com.member.controller;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import com.member.model.MemberVO;
 import com.member.service.MemberService;
@@ -28,32 +36,32 @@ public class MemberController {
 
 	@Autowired
 	private JavaMailSender mailSender;
-
+	
 	// 회원가입 페이지 이동
 	@GetMapping("/join")
 	public void joinForm() {
 
-		log.info("회원가입 페이지 진입");
+		//log.info("회원가입 페이지 진입");
 
 	}
 
 	// 회원가입
 	@PostMapping("/join")
 	public String joinPost(MemberVO member) {
-		log.info("join 진입");
+		//log.info("join 진입");
 
 		// 회원가입 서비스 실행
 		memberservice.MemberJoin(member);
 		log.info("join Service 성공");
 
-		return "redirect:/main";
+		return "redirect:/index";
 	}
 
 	// 로그인 페이지 이동
 	@GetMapping("/login")
 	public void loginForm() {
 
-		log.info("로그인 페이지 진입");
+		//log.info("로그인 페이지 진입");
 
 	}
 
@@ -85,7 +93,7 @@ public class MemberController {
 		
 		int result = memberservice.nickCheck(nick);
 		
-		log.info("결과값 = " +result);
+		//log.info("결과값 = " +result);
 		
 		if(result != 0) {
 			return "fail";
@@ -135,5 +143,40 @@ public class MemberController {
 		return num;
 
 	}
+	/* 로그인 */
+	@PostMapping("/login")
+	public String loginPOST(HttpServletRequest request,MemberVO member, RedirectAttributes rttr,@RequestParam("userid") String userid) throws Exception {
+		
+		HttpSession session = request.getSession();
+		MemberVO lvo = memberservice.memberLogin(member);
+		MemberVO memberVO= memberservice.selectById(userid);
+
+		if (lvo == null) { // 일치하지 않는 아이디, 비밀번호 입력 경우
+			int result = 0;
+			rttr.addFlashAttribute("result", result);
+			
+			return "redirect:/member/login";
+		}
+		session.setAttribute("member", lvo); // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
+		session.setAttribute("userid", userid);
+		session.setAttribute("mName", member.getName());
+		session.setAttribute("nick", member.getNick());
+		
+		return "redirect:/index";
+		
+	}
+	 
+	 /* 메인페이지 로그아웃 */
+	@GetMapping("logout")
+    public String logoutMainGET(HttpServletRequest request) throws Exception{
+		  	//log.info("logoutMainGET메서드 진입");
+	        
+	        HttpSession session = request.getSession();
+	        session.invalidate();
+	        
+	        return "redirect:/index";   
+    }
+ 
+
 }
 // end---------------------------------------------------------------------------------

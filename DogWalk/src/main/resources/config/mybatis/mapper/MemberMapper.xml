@@ -14,15 +14,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{addr1:VARCHAR},#{addr2:VARCHAR},SYSDATE,#{status},#{nick},#{rrn1},#{mail:VARCHAR})
 	</insert>
 	
-	<select id="idCheck" resultType="int">
+	<select id="idCheck" resultType="int" parameterType="String">
   	
   		select count(*) from members where userid = #{userid}
   	
   	</select>
   	
-  	<select id="nickCheck" resultType="int">
+  	<select id="nickCheck" resultType="int" parameterType="String">
   	
   		select count(*) from members where nick = #{nick}
   	
+  	</select>
+	<select id="memberLogin" resultType="Member">
+		select userid, name, pwd, nick from members where userid=#{userid} and pwd=#{pwd}
+  	</select>
+	<select id="selectById" resultType="Member">
+		select count(*) from members where userid=#{userid} 
   	</select>
 </mapper>

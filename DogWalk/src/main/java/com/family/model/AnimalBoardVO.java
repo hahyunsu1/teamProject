@@ -13,7 +13,7 @@ public class AnimalBoardVO {
 	private String cpass; //게시글패스워드
 	private String title; //게시글 제목
 	private String content; //게시글 내용
-	
+	private String mail_fk;
 	private Date wdate;
 	private int cnt;//조회수
 	private String filename;//물리적 파일명
