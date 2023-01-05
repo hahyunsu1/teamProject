@@ -4,8 +4,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
-<c:import url="/top"/>
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js">
+</script>
 
 <div class="container mt-3" style="height: 600px;overFlow:auto;">
 	<h1 class="text-center">animal_Board  내용 보기</h1>
@@ -79,7 +80,7 @@
                   href="../list">목록</a>| <a href="#" onclick="go(1)">편집</a>| <a
                   href="#" onclick="go(2)">삭제</a>|</td>
             </tr>
-       	     <div class="buy_chat">
+       	    <%--  <div class="buy_chat">
 				<form:form id="chatSubmit_form" action="/chatMessage" method="GET" modelAttribute="chatRoom">
 					<a href="javascript:{}" onclick="chatSubmit()">
 						<form:input type="hidden" path="sellerName" value="${nick_fk}"/>
@@ -91,7 +92,7 @@
 						</button>
 					</a>
 				</form:form>
-			</div>
+			</div> --%>
          </table>
 	</c:if>
 	<!-- 파일 다운로드를 위한 form------------------------------------------ -->

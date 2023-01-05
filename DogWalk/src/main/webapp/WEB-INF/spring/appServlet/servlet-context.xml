@@ -5,7 +5,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
-		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
@@ -27,7 +27,10 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.family.web,com.family,com.common,com.message,com.member" />
+	<context:component-scan base-package="com.family.web,com.family,com.member,com.message,com.family.board" />
+	<context:component-scan base-package="com.common"/>
+	
+	 <!-- <mvc:resources mapping="/**" location="/static/" /> -->
 	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding" value="UTF-8"/>
@@ -36,9 +39,7 @@
 	</beans:bean>
 	<beans:bean id="upDir" class="java.lang.String">
 		<beans:constructor-arg value="c:/myjava/Upload"/>
-		
 	</beans:bean>
-	
 	<!-- 웹 소켓핸들러 -->
         <websocket:handlers>
                <websocket:mapping handler="alarmHandler" path="/alarm"/>
@@ -56,7 +57,6 @@
         <beans:property name="basenames" value="/WEB-INF/messages/messages"/>
         <beans:property name="defaultEncoding" value="UTF-8"/>
     </beans:bean>
-	
 	
 	
 	<!-- String upDir=new String("c:/myjava/Upload"); -->
