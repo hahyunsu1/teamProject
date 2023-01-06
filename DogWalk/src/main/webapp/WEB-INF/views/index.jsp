@@ -67,6 +67,7 @@
                                 <a href="${myctx}/naverMap">병원지도 API</a>
                                 <a href="gallery.html">산책</a>
                                 <a href="${myctx}/comanimal/animal_boardlist">돌봄</a>
+                                <a href="${myctx}/management/main.bit">반려동물 등록</a>
 								<a href="${myctx}/second-hand">중고 게시판</a>
 								<a href="${myctx}/animal-care">양육 게시판</a>
 								<a href="${myctx}/board/list">문의 게시판</a>

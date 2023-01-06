@@ -90,5 +90,7 @@
 		base-package="com.family.mapper,com.member.mapper,com.message.mapper,com.family.board.mapper" />
 	<mybatis-spring:scan 
 		base-package="com.family.web.animalCareBoard.mapper, com.family.web.secondHandBoard.mapper"/>
+	<mybatis-spring:scan 
+		base-package="com.family.pet.mapper"/>
 		
 </beans>

@@ -37,5 +37,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         addr1=#{addr1}, addr2=#{addr2}, nick=#{nick}, mail=#{mail}
         where idx=#{idx}
     </update>
+    
+    <select id="selectById" resultType="Member">
+		select count(*) from members where userid=#{userid} 
+  	</select>
+  	
+  
   	
 </mapper>

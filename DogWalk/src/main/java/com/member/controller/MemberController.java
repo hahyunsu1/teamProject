@@ -1,7 +1,9 @@
 package com.member.controller;
 
+import java.security.Principal;
+import java.util.List;
 import java.util.Random;
-
+import java.security.*;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,6 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +21,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.family.pet.model.PetVO;
+import com.family.pet.service.MedicalService;
 import com.member.mapper.MemberMapper;
 import com.member.model.MemberVO;
 import com.member.service.MemberService;
@@ -42,6 +49,8 @@ public class MemberController {
 	 @Autowired
 	private BCryptPasswordEncoder pwEncoder;
 	 
+	 @Autowired
+	 private MemberService ms;
 	 @Autowired 
 	 private MemberMapper mapper;	
 	 
@@ -154,13 +163,13 @@ public class MemberController {
 
 	/* 로그인 */
 	@PostMapping("/login")
-	public String loginPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception {
+	public String loginPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr,@RequestParam("userid") String userid) throws Exception {
 		HttpSession session = request.getSession();
         String rawPw = "";
         String encodePw = "";
         // 제출한아이디와 일치하는 아이디있는지 
         MemberVO lvo = memberservice.memberLogin(member);
-        
+        MemberVO memberVO= memberservice.selectById(userid);
         if(lvo != null) {// 일치하는 아이디 존재시
         	rawPw = member.getPwd();// 사용자가 제출한 비밀번호
             encodePw = lvo.getPwd();// 데이터베이스에 저장한 인코딩된 비밀번호
@@ -168,6 +177,9 @@ public class MemberController {
             if(true == pwEncoder.matches(rawPw, encodePw)) {// 비밀번호 일치여부 판단
                 lvo.setPwd("");                    // 인코딩된 비밀번호 정보 지움
                 session.setAttribute("member", lvo);     // session에 사용자의 정보 저장
+                session.setAttribute("userid", userid);
+        		session.setAttribute("mName", member.getName());
+        		session.setAttribute("nick", member.getNick());
                 return "redirect:/index";        // 메인페이지 이동
             } else {
             	 rttr.addFlashAttribute("result", 0);            
@@ -217,5 +229,47 @@ public class MemberController {
 		/* memberservice. 멤버정보를 가져오는걸*/
 		return new ModelAndView("member/mypage");
 	}
+    
+ // 마이페이지 > 내 반려동물 정보(반려동물 관리의 내 반려동물 정보와 동일한 내용의 페이지)
+ 	@RequestMapping(value = "myPetsInfo.bit", method = RequestMethod.GET)
+ 	public String myPetPage(Principal principal, Model model,HttpSession httpSession) {
+ 		String userid = (String) httpSession.getAttribute("userid");
+// 		String userid =  principal.getName();
+ 		log.info("로그인 유저 아이디: "+userid);
+ 		
+ 		List<PetVO> petList = ms.getPetInfo(userid);
+ 		
+ 		if(petList!=null) {
+ 			
+ 			log.info("반려동물 정보 가져오기 성공");
+ 			model.addAttribute(petList);
+ 		}else {
+ 			
+ 			log.info("반려동물 정보 가져오기 실패");
+ 			
+ 			return "redirect:/newPet.bit";
+ 		}
+ 		
+ 		return "member/myPetsInfo";
+ 	}
+ 	
+ 	// 반려동물의 마이페이지 view
+ 	@RequestMapping(value = "petPage.bit", method = RequestMethod.GET)
+ 	public String petPage(String cp, String ps, HttpServletRequest request, Model model) {
+ 		String userid = null;
+ 		//request객체로 세션 접근해서 userid 빼기
+ 		MemberVO user = (MemberVO)request.getSession().getAttribute("member");
+ 		if(user !=null) {
+ 			userid = user.getUserid();
+ 		}
+ 		String petindex = request.getParameter("petindex");
+ 		
+ 		//반려동물 정보 가져오기
+ 		PetVO pet = ms.getPet(Integer.parseInt(petindex));		
+ 		model.addAttribute("pet",pet);
+ 		
+ 		
+ 		return "member/petPage";
+ 	}	
 
 }// end---------------------------------------------------------------------------------
