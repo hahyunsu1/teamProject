@@ -30,7 +30,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.family.web,com.family,com.member,com.message,com.family.board" />
-	<context:component-scan base-package="com.common,com.family.pet,com.mongo.db"/>
+	<context:component-scan base-package="com.common,com.family.pet,com.mongo.db,com.obj.test,com.family.qna"/>
 	
 	 <!-- <mvc:resources mapping="/**" location="/static/" /> -->
 	
@@ -64,5 +64,12 @@
 		<beans:bean id="chatHandler" class="com.message.websocket.WebSocketChatHandler" />
 		
 		
+		<!-- 하현수 0111  -->
+		<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+		<beans:bean id="naverLoginBO" class="com.member.controller.NaverLoginBO" />
+		
+		
+	
+	    <!-- 하현수 0111 끝 -->
 	
 </beans:beans>

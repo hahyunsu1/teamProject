@@ -20,6 +20,7 @@ public class MemberVO {
 	private String nick;
 	private String mail;
 	private String rrn1,rrn2;
+	private String snstype;
 	
 	public String getAllHp() {
 		return hp1+"-"+hp2+"-"+hp3;

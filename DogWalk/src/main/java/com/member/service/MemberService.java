@@ -25,4 +25,6 @@ public interface MemberService {
     public List<PetVO> getPetInfo(String userid);
     
     public PetVO getPet(int petindex);
+    
+    public MemberVO normalLogin(String userid);
 }
