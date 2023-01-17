@@ -66,8 +66,8 @@
                                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                              <div class="overlay-content">
                              	<a href="/index">Home</a>
-                                <%-- <a href="${myctx}/naverMap">병원지도 API</a>
-                                <a href="gallery.html">산책</a> --%>
+                                <a href="${myctx}/naver/NewFile1">병원지도 API</a>
+                                <<!-- a href="gallery.html">산책</a> -->
                                 <a href="${myctx}/comanimal/animal_boardlist">돌봄</a>
                                 <a href="${myctx}/management/main.bit">반려동물 등록</a>
                                 <a href="${myctx}/chatList.bit">채팅</a>

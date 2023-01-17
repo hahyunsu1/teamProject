@@ -264,7 +264,7 @@ public class MemberController {
 				logger.info(email);
 		//4.파싱 닉네임 세션으로 저장
 				session.setAttribute("sessionId", name); // 세션 생성
-				session.setAttribute("sessionId", email); // 세션 생성
+				session.setAttribute("userid", email); // 세션 생성
 				model.addAttribute("result", apiResult);
 				logger.info(apiResult);
 				logger.info(email);
@@ -361,24 +361,7 @@ public class MemberController {
  		return "member/myPetsInfo";
  	}
  	
- 	// 반려동물의 마이페이지 view
- 	@RequestMapping(value = "petPage.bit", method = RequestMethod.GET)
- 	public String petPage(String cp, String ps, HttpServletRequest request, Model model) {
- 		String userid = null;
- 		//request객체로 세션 접근해서 userid 빼기
- 		MemberVO user = (MemberVO)request.getSession().getAttribute("member");
- 		if(user !=null) {
- 			userid = user.getUserid();
- 		}
- 		String petindex = request.getParameter("petindex");
- 		
- 		//반려동물 정보 가져오기
- 		PetVO pet = ms.getPet(Integer.parseInt(petindex));		
- 		model.addAttribute("pet",pet);
- 		
- 		
- 		return "member/petPage";
- 	}	
+ 	
 
 	//회원 정보 수정
 	@RequestMapping("/updateMember")

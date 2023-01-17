@@ -33,6 +33,7 @@ public class MemberVO {
 	public String getAllRrn() {
 		return rrn1+"-"+rrn2;
 	}
+	
 }
 
 

@@ -380,8 +380,28 @@
 			<artifactId>scribejava-core</artifactId>
 			<version>2.8.1</version>
 		</dependency>
-		<!-- 하현수 추가 0111 끝 -->      
+		<!-- 하현수 추가 0111 끝 --> 
+		
+		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
+		<dependency>
+		    <groupId>com.amazonaws</groupId>
+		    <artifactId>aws-java-sdk-s3</artifactId>
+		    <version>1.11.1001</version>
+		</dependency>  
+		   <dependency>
+			    <groupId>com.github.iamport</groupId>
+			    <artifactId>iamport-rest-client-java</artifactId>
+			    <version>0.2.22</version>
+			</dependency>
+	
+
 	</dependencies>
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories> 
     <build>
         <plugins>
             <plugin>

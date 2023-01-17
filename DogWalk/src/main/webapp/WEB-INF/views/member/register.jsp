@@ -7,7 +7,7 @@
 
 <head>
 
-	<title>슬기로운 반려생활</title>
+	
 	<%@ include file="/WEB-INF/include/import.jsp"%>
 	<style type="text/css">
 		
@@ -77,8 +77,7 @@
 		<div class="side_overlay">
 			<div class="row">
 				<div class="col-12 title-area">
-					<h1 class="title">Love your pet more</h1>
-					<h3 class="h3-korean">슬기로운 반려생활 시작하기</h3>
+					
 				</div>
 				<div class="col-2"></div>
 				<div class="col-8 area">
