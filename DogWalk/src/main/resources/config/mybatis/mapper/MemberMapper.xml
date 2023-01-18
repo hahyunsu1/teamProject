@@ -9,9 +9,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select members_seq.nextval from dual
 		</selectKey>
 		insert into members(idx,rrn2,name,userid,pwd,hp1,hp2,hp3,post,addr1,addr2,indate,
-		status,nick,rrn1,mail)
+		status,nick,rrn1,mail,snstype)
 		values(#{idx},#{rrn2},#{name},#{userid},#{pwd},#{hp1},#{hp2},#{hp3},#{post:VARCHAR},
-		#{addr1:VARCHAR},#{addr2:VARCHAR},SYSDATE,#{status},#{nick},#{rrn1},#{mail:VARCHAR})
+		#{addr1:VARCHAR},#{addr2:VARCHAR},SYSDATE,#{status},#{nick},#{rrn1},#{mail:VARCHAR},#{snstype})
 	</insert>
 	
 	<select id="idCheck" resultType="int">
@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	
   	</select>
   	
-  	<select id="memberLogin" resultType="com.member.model.MemberVO">
+  	<select id="memberLogin" resultType="Member">
   		select * from members where userid=#{userid}
 		<!-- select * from members where userid=#{userid} and pwd=#{pwd} -->
   	</select>
@@ -35,7 +35,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update members
         set pwd=#{pwd}, hp1=#{hp1}, hp2=#{hp2}, hp3=#{hp3}, post=#{post},
         addr1=#{addr1}, addr2=#{addr2}, nick=#{nick}, mail=#{mail}
-        where idx=#{idx}
+        where userid=#{userid}
     </update>
+    
+    <select id="selectById" resultType="Member">
+		select count(*) from members where userid=#{userid} 
+  	</select>
+  	<delete id="removeMember" parameterType="String">
+    	delete from members where userid=#{userid}
+	</delete>
+  	
+  	<!-- 하현수 0112-->
+  	<select id="getUser" resultType="Member">
+  		select * from MEMBERS where userid = #{userid}
+  	</select>
   	
 </mapper>

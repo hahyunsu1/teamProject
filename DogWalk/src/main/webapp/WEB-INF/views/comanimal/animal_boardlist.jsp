@@ -1,16 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/css/bootstrap-material-datetimepicker.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<%@ include file="/WEB-INF/include/import.jsp"%>
+</head>
 
 <div class="container" style="text-align:center">
 	 <c:set var="myctx" value="${pageContext.request.contextPath}"/>
 		<div class="row">
         <div class="col-md-12">
-           <h1 class="text-center m-4" style="margin:1em">::Animal List:::</h1>
+           <h1 class="text-center m-4" style="margin:1em">::돌봄 매칭게시판:::</h1>
            
            <table class="table table-striped" id="Animal">
               <thead>
@@ -36,7 +40,7 @@
 	                    <td>
 	                    ${amb.pet}				
 	                    </td>
-	                    <td>${amb.nick_fk}</td>
+	                    <td>${amb.nick}</td>
 	                    <td width="15%">
 	                    <a href="view/<c:out value="${amb.cnum}"/>" target="_blank">
 	                   		<img src="../resources/animal_board_images/${amb.filename}" 
@@ -49,10 +53,7 @@
 	                    원</b><br>
 	                    
 	                    </td>
-	                    <td>
-	                    <a href="javascript:edit('${amb.cnum}')">수정</a>|
-	                    <a href="#" onclick="remove('${amb.cnum}')">삭제</a>
-	                    </td>
+	                    
 	                 </tr>
                  </c:forEach>
                 </c:if>	
