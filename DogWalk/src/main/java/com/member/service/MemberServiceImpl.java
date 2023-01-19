@@ -1,28 +1,14 @@
 package com.member.service;
 
-import java.util.List;
-
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.family.pet.mapper.PetMapper;
-import com.family.pet.model.PetVO;
 import com.member.mapper.MemberMapper;
 import com.member.model.MemberVO;
 
 @Service("MemberServiceImpl")
 public class MemberServiceImpl implements MemberService {
-	//하현수 추가-----
-	private SqlSession sqlsession;
-
-	@Autowired
-	public void setSqlsession(SqlSession sqlsession) {
-		this.sqlsession = sqlsession;
-	}
-	@Autowired
-	PetMapper petMapper;
-	/////추가
+	
 	@Autowired
 	private MemberMapper membermapper;
 	//회원가입
@@ -52,81 +38,6 @@ public class MemberServiceImpl implements MemberService {
     	return this.membermapper.updateMember(member);
     }
  
-    @Override
-	public int removeMember(String userid) {
-		int result = membermapper.removeMember(userid);
-		return result;
-	}
-    
-    
-    @Override
-	public MemberVO selectById(String userid) {
-		
-		return this.membermapper.selectById(userid);
-	}
-    
-    //하현수 추가
-    @Override
-    public List<PetVO> getPetInfo(String userid) {
-		petMapper = sqlsession.getMapper(PetMapper.class);
-		return petMapper.getPetInfo(userid);
-	}
-	
-	
-    @Override
-	public MemberVO normalLogin(String userid) {
-		
-		membermapper = sqlsession.getMapper(MemberMapper.class);
-
-		return membermapper.getUser(userid);
-	}
-
-    @Override
-	public List<MemberVO> adminUserList() {
-		return membermapper.adminUserList();
-}
-	@Override
-	public List<MemberVO> adminUserList2() {
-		return membermapper.adminUserList2();
-	}
-	
-	@Override
-	public void dropUser(String id) {
-		membermapper.dropUser(id);
-		
-	}
-
-	@Override
-	public MemberVO userDetail(String user_id) {
-		return membermapper.freeDetail(user_id);
-	}
-
-	@Override
-	public int findLike(String user_id) {
-		return 0;
-	}
-
-	@Override
-	public int getLike(String user_id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void likeDown(String user_no) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public int likeUp(String user_no) {
-		// TODO Auto-generated method stub
-		return membermapper.likeUp(user_no);
-	}
-
-
-	
-
 
 
 }
