@@ -3,11 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-	xmlns:websocket="http://www.springframework.org/schema/websocket"
-	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
-		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd">
 	<!--[1] context,mybatis-spring 네임스페이스 추가함 -->
 	<context:property-placeholder
 		location="classpath:config/props/database.properties" />
@@ -39,6 +37,13 @@
 		class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<constructor-arg ref="hikariConfig" />
 	</bean>
+	<!-- MySQL -->
+	<!-- <bean id="dataSource-mysql" class="org.apache.commons.dbcp2.BasicDataSource" 
+		destroy-method="close"> <property name="driverClassName" value="${Global.DriverClassName}"></property> 
+		<property name="url" value="${Global.Url}"></property> <property name="username" 
+		value="${Global.Username}"></property> <property name="password" value="${Global.Password}"></property> 
+		</bean> -->
+
 	<!--[4] SqlSessionFactoryBean 등록 -->
 	<bean id="sqlSessionFactoryBean"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -59,7 +64,7 @@
 		<property name="host" value="smtp.naver.com" /> <!-- 메이서버 호스트 -->
 		<property name="port" value="465" /> <!-- 메이서버 포트번호 -->
 		<property name="username" value="tmxhak12" /> <!-- 자신의 이메일 아이디 -->
-		<property name="password" value="dmsrud12~!" /> <!-- 자신의 비밀번호 -->
+		<property name="password" value="eunkyeong12~!" /> <!-- 자신의 비밀번호 -->
 		<!-- 보안연결 SSL과 관련된 설정 -->
 		<property name="javaMailProperties">
 			<props>
@@ -80,8 +85,5 @@
 	<!-- [6] mybatis-spring:scan 설정 여기에 설정된 패키지의 인터페이스들은 scan해서 해당 인터페이스를 구현한 
 		객체(Proxy)를 스프링이 대신 만들어준다(생성해줌) -->
 	<mybatis-spring:scan
-		base-package="com.family.mapper,com.member.mapper,com.message.mapper" />	
-	<mybatis-spring:scan 
-		base-package="com.family.pet.mapper,com.family.qna.mapper"/>
-		
+		base-package="com.member.mapper" />
 </beans>
