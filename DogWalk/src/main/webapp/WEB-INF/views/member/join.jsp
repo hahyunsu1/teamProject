@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -7,16 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+ <%@ include file="/WEB-INF/include/import.jsp"%>
 <script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
-<c:import url="/top" />
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
+</script>
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
 <style type="text/css">
 	@import url("../css/member/join.css");
 </style>
 
 <div class="container" style="height: 750px; overflow: auto;">
-	<h1 class="text-center mt-1">Signup</h1>
+	<h1 class="text-center mt-1">회원가입</h1>
 	<form name="mf" id="join_form" method="post">
 
 		<table class="table">
@@ -388,4 +389,3 @@
 	 
 
 </script>
-<c:import url="/foot" />
